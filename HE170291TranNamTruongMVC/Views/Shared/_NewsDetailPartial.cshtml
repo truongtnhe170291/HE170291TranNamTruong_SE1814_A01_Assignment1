@@ -1,0 +1,33 @@
+﻿@model Service.DTO.NewsDetailViewModel
+
+<div>
+    <h4>@Model.NewsTitle</h4>
+    <p><strong>Headline:</strong> @Model.Headline</p>
+    <p><strong>Created Date:</strong> @Model.CreatedDate?.ToString("dd/MM/yyyy")</p>
+    <p><strong>Content:</strong> @Model.NewsContent</p>
+    <p><strong>Source:</strong> @Model.NewsSource</p>
+    <p><strong>Category:</strong> @Model.CategoryName</p>
+    <p><strong>Created By:</strong> @Model.CreatedByName</p>
+    <p>
+        <strong>Status:</strong>
+        <span class="badge text-@((Model.NewsStatus?? false) ? "success" : "danger")">
+            @((Model.NewsStatus ?? false) ? "Active" : "Inactive")
+        </span>
+    </p>
+    <p>
+        <strong>Tags:</strong>
+        @if (Model.Tags != null && Model.Tags.Any())
+        {
+            foreach (var tag in Model.Tags)
+            {
+                <span class="badge text-warning mr-1">@tag</span>
+            }
+        }
+        else
+        {
+            <span>No tags</span>
+        }
+    </p>
+    <p><strong>Last Updated By:</strong> @Model.UpdateByName</p>
+    <p><strong>Last Modified Date:</strong> @Model.ModifiedDate?.ToString("dd/MM/yyyy")</p>
+</div>
